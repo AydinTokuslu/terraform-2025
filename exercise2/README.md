@@ -555,7 +555,7 @@ terraform plan
 
 - The for_each meta-argument accepts a map or a set of strings, and creates an instance for each item in that map or set. Each instance has a distinct infrastructure object associated with it, and each is separately created, updated, or destroyed when the configuration is applied.
 
-- Go to the `variables.tf` file again and add a new variable.
+- Go to the `main.tf` file again and add a new variable.
 
 ```go
 variable "users" {
