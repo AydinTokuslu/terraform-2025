@@ -7,6 +7,8 @@ module "docker_instance" {
     key_name = "mykey"
 }
 
+
+
 output "public_ip" {
   value = module.docker_instance.instance_public_ip
 }
