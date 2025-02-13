@@ -8,3 +8,5 @@ resource "aws_instance" "tf-ec2" {
     Name = "kittens-carousel"
   }
 }
+
+
