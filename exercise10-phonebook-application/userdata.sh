@@ -22,7 +22,7 @@ python3 phonebook-app.py
 # pip3 install flask
 # pip3 install flask_mysql
 # echo "${MyDBURI}" > /home/ec2-user/dbserver.endpoint
-# TOKEN="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"
+# TOKEN="XXXXXXXXXXXX"
 # FOLDER="https://$TOKEN@raw.githubusercontent.com/AydinTokuslu/private-my-projects/main/Project-004-Phonebook-Application"
 # curl -s --create-dirs -o "/home/ec2-user/templates/index.html" -L "$FOLDER"/templates/index.html
 # curl -s --create-dirs -o "/home/ec2-user/templates/add-update.html" -L "$FOLDER"/templates/add-update.html
