@@ -15,3 +15,14 @@ variable "instance_keypair" {
   type = string
   default = "mykey"
 }
+
+variable "db_subnet_a_us_east_1a_id" {
+  description = "Subnet ID for database in us-east-1a"
+  type        = string
+}
+
+variable "db_subnet_b_us_east_1b_id" {
+  description = "Subnet ID for database in us-east-1b"
+  type        = string
+}
+

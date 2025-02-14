@@ -1,6 +1,7 @@
 resource "aws_security_group" "alb-secgrp" {
   name        = "alb-secgrp"
   description = "Allow TLS inbound traffic"
+  vpc_id = data.aws_vpc.default.id
   
   ingress {
     description = "allow port 80"

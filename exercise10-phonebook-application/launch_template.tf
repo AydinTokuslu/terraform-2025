@@ -8,26 +8,31 @@ resource "aws_launch_template" "my_launch_template" {
   vpc_security_group_ids = [ aws_security_group.webserver-secgrp.id ]
   key_name = var.instance_keypair  
   user_data = filebase64("${path.module}/userdata.sh")
-  ebs_optimized = true
-  #default_version = 1
-  update_default_version = true
-  block_device_mappings {
-    device_name = "/dev/sda1"
-    ebs {
-      volume_size = 10 
-      #volume_size = 20 # LT Update Testing - Version 2 of LT      
-      delete_on_termination = true
-      volume_type = "gp2" # default is gp2
-     }
-  }
-  monitoring {
-    enabled = true
-  }
 
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name = "myasg"
+      Name = "my launch template"
     }
   }
 }
+
+resource "aws_instance" "phonebook_app" {
+  #ami             = "ami-xyz"
+  ami             = data.aws_ami.linux2.id
+  instance_type   = "t2.micro"
+
+  depends_on = [aws_db_instance.my-database-server] # Önce DB oluşsun
+
+  user_data = base64encode(templatefile("${path.module}/userdata.sh", {
+    MyDBURI = aws_db_instance.my-database-server.endpoint,
+    FOLDER  = "https://raw.githubusercontent.com/AydinTokuslu/my-projects/refs/heads/main/aws/Project-004-Phonebook-Application/phonebook-app.py"
+  }))
+
+  tags = {
+    Name = "PhonebookApp"
+  }
+}
+
+
+
