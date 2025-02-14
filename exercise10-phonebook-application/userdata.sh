@@ -15,8 +15,3 @@ wget ${FOLDER}/templates/add-update.html
 wget ${FOLDER}/templates/delete.html
 cd ..
 python3 phonebook-app.py
-
-
-
-
-#images/profile.jpg
