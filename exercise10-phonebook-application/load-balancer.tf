@@ -9,6 +9,8 @@ resource "aws_lb" "phonebook-lb" {
   }
 }
 
+
+
 resource "aws_lb_listener" "phonebook-listener" {
   load_balancer_arn = aws_lb.phonebook-lb.arn
   port              = "80"
