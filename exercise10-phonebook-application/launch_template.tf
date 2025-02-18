@@ -26,7 +26,7 @@ resource "aws_instance" "phonebook_app" {
 
   user_data = base64encode(templatefile("${path.module}/userdata.sh", {
     MyDBURI = aws_db_instance.my-database-server.endpoint,
-    FOLDER  = "https://raw.githubusercontent.com/AydinTokuslu/my-projects/refs/heads/main/aws/Project-004-Phonebook-Application/phonebook-app.py"
+    #FOLDER  = "https://raw.githubusercontent.com/AydinTokuslu/my-projects/refs/heads/main/aws/Project-004-Phonebook-Application/phonebook-app.py"
   }))
 
   tags = {
