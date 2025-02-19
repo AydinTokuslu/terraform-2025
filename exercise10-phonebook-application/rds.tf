@@ -1,18 +1,18 @@
 resource "aws_db_instance" "my-database-server" {
   allocated_storage     = 20
   max_allocated_storage = 20
-  identifier            = "aydin-db2"
+  identifier            = "aydin-db"
 
-  db_name        = "clarusway_phonebook"
+  db_name        = "contactlist"
   engine         = "mysql"
   engine_version = "8.0.35"
   instance_class = "db.t3.micro"
   username       = "admin"
-  password       = "awsdevops13"
+  password       = "admin12345"
   port           = 3306
 
   skip_final_snapshot = true
-  publicly_accessible = false
+  publicly_accessible = true
 
   vpc_security_group_ids  = [aws_security_group.db-secgrp.id]
   backup_retention_period = 0

@@ -6,8 +6,12 @@ output "this_lb_dns_name" {
 }
 
 
-output "db_endpoint" {
-  value = aws_db_instance.my-database-server.endpoint
+output "rds_endpoint" {
   description = "The database endpoint"
+  value = aws_db_instance.my-database-server.endpoint
+}
+
+output "websiteurl" {
+    value = aws_route53_record.phonebook.name
 }
 

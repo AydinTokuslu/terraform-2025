@@ -9,8 +9,6 @@ resource "aws_lb" "phonebook-lb" {
   }
 }
 
-
-
 resource "aws_lb_listener" "phonebook-listener" {
   load_balancer_arn = aws_lb.phonebook-lb.arn
   port              = "80"
@@ -29,14 +27,14 @@ resource "aws_lb_target_group" "phonebook-tg" {
   vpc_id      = data.aws_vpc.default.id
   target_type = "instance"
   health_check {
-    enabled             = true
+    #enabled             = true
     healthy_threshold   = 2
-    interval            = 10
-    matcher             = 200
-    path                = "/"
-    port                = "traffic-port"
-    protocol            = "HTTP"
-    timeout             = 3
+    #interval            = 10
+    #matcher             = 200
+    #path                = "/"
+    #port                = "traffic-port"
+    #protocol            = "HTTP"
+    #timeout             = 3
     unhealthy_threshold = 3
   }
 }
