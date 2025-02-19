@@ -16,7 +16,11 @@ variable "instance_keypair" {
   default = "mykey"
 }
 
-
+variable "bucket_name" {
+  type = string
+  description = "Name of the bucket."
+  default = "project-bucket-aydin44"
+}
 
 variable "hosted-zone" {
   default = "devopsaydintokuslu.de."
