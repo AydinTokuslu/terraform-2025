@@ -1,6 +1,10 @@
 resource "aws_s3_bucket" "bucket" {
   bucket = var.bucket_name
-  force_destroy = true
+  #force_destroy = true
+  #acl    = "public-read"
+  # versioning {
+  #   enabled=true
+  # }
 }
 
 resource "aws_s3_bucket_website_configuration" "blog" {
@@ -8,10 +12,11 @@ resource "aws_s3_bucket_website_configuration" "blog" {
   index_document {
     suffix = "index.html"
   }
-  error_document {
-    key = "error.html"
-  }
 }
+
+
+
+
 
 resource "aws_s3_bucket_public_access_block" "public_access" {
   bucket = aws_s3_bucket.bucket.id
@@ -28,8 +33,8 @@ resource "aws_s3_object" "upload_object" {
   key           = each.value
   source        = "static-web/${each.value}"
   etag          = filemd5("static-web/${each.value}")
-  #content_type  = "text/html, image/jpeg"
-  #acl = "public-read"
+  content_type  = "text/html"
+  acl = "public-read"
 }
 
 resource "aws_s3_bucket_ownership_controls" "state_store" {
@@ -39,24 +44,45 @@ resource "aws_s3_bucket_ownership_controls" "state_store" {
   }
 }
 
+
+
 resource "aws_s3_bucket_policy" "bucket_policy" {
   bucket = aws_s3_bucket.bucket.id
   depends_on = [aws_s3_bucket.bucket]
   policy = jsonencode({
-    Version = "2012-10-17"
-    Id      = "MYBUCKETPOLICY",
+    Version = "2012-10-17",
     Statement = [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::${aws_s3_bucket.bucket.id}/*"
-        }
+      {
+        Sid    = "PublicReadGetObject",
+        Effect = "Allow",
+        Principal = "*",
+        Action = "s3:GetObject",
+        Resource = "arn:aws:s3:::${aws_s3_bucket.bucket.id}/*"
+      }
     ]
 }
   )
 } 
+
+
+# resource "aws_s3_bucket_policy" "b3" {
+#   bucket = aws_s3_bucket.bucket.id
+#   policy = <<POLICY
+# {
+#     "Version": "2012-10-17",
+#     "Statement": [
+#         {
+#             "Sid": "PublicReadGetObject",
+#             "Effect": "Allow",
+#             "Principal": "*",
+#             "Action": "s3:GetObject",
+#             "Resource": "arn:aws:s3:::${aws_s3_bucket.bucket.id}/*"
+#         }
+#     ]
+# }
+# POLICY
+# }
+
 # resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
 #   bucket = aws_s3_bucket.bucket.id
 #   policy = data.aws_iam_policy_document.allow_access_from_another_account.json
