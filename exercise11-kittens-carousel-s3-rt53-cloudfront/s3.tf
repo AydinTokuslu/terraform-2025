@@ -29,27 +29,53 @@ resource "aws_s3_object" "upload_object" {
   source        = "static-web/${each.value}"
   etag          = filemd5("static-web/${each.value}")
   #content_type  = "text/html, image/jpeg"
-  acl = "public-read"
+  #acl = "public-read"
 }
 
-resource "aws_s3_bucket_policy" "bucket-policy" {
-  bucket = data.aws_s3_bucket.selected-bucket.id
-  policy = data.aws_iam_policy_document.iam-policy-1.json
-}
-data "aws_iam_policy_document" "iam-policy-1" {
-  statement {
-    sid    = "AllowPublicRead"
-    effect = "Allow"
-resources = [
-      "arn:aws:s3:::www.${var.bucket_name}",
-      "arn:aws:s3:::www.${var.bucket_name}/*",
-    ]
-actions = ["S3:GetObject"]
-principals {
-      type        = "*"
-      identifiers = ["*"]
-    }
+resource "aws_s3_bucket_ownership_controls" "state_store" {
+  bucket = aws_s3_bucket.bucket.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
   }
-
-  depends_on = [aws_s3_bucket_public_access_block.public_access]
 }
+
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.bucket.id
+  depends_on = [aws_s3_bucket.bucket]
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Id      = "MYBUCKETPOLICY",
+    Statement = [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::${aws_s3_bucket.bucket.id}/*"
+        }
+    ]
+}
+  )
+} 
+# resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
+#   bucket = aws_s3_bucket.bucket.id
+#   policy = data.aws_iam_policy_document.allow_access_from_another_account.json
+# }
+
+# data "aws_iam_policy_document" "allow_access_from_another_account" {
+#   statement {
+#     principals {
+#       type        = "AWS"
+#       identifiers = ["600627361541"]
+#     }
+
+    
+#     actions = [
+#       "s3:GetObject",
+#     ]
+
+#     resources = [
+#       "${aws_s3_bucket.bucket.arn}/*",
+#     ]
+#   }
+# }

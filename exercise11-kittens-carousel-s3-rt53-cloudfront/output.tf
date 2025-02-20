@@ -9,7 +9,7 @@ output "s3_bucket_id" {
 
 
 
-output "websiteurl" {
-    value = aws_route53_record.phonebook.name
-}
+# output "websiteurl" {
+#     value = aws_route53_record.phonebook.name
+# }
 
