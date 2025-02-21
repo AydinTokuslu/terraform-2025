@@ -1,4 +1,4 @@
-resource "aws_db_instance" "my-database-server" {
+resource "aws_db_instance" "my-database-server" { 
   allocated_storage     = 20
   max_allocated_storage = 20
   identifier            = "aydin-db"

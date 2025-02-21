@@ -120,3 +120,14 @@
 # USER=${user-data-git-name}
 # cd /home/ec2-user && git clone https://$TOKEN@github.com/$USER/phonebook.git
 # python3 /home/ec2-user/phonebook/phonebook-app.py
+
+
+
+# TOKEN=${var.git-token}
+# #TOKEN="${data.template_file.contactlist.user-data-git-token}"
+# USER=${var.git-name}
+# #USER="${data.template_file.contactlist.user-data-git-name}"
+
+# cd /home/ec2-user && git clone https://$TOKEN@github.com/$USER/contact-list-project.git
+
+# python3 /home/ec2-user/contact-list-project/contact-list-app.py
