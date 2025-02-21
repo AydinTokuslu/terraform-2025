@@ -17,13 +17,8 @@ resource "aws_autoscaling_group" "phonebook_asg" {
   }
 }
 
-# resource "github_repository_file" "dbendpoint" {
-#   content = aws_db_instance.my-database-server.address
-#   file = "dbserver.endpoint"
-#   repository = "phonebook"
-#   overwrite_on_create = true
-#   branch = "main"
-# }
+
+
 data "aws_route53_zone" "selected" {
   name = var.hosted-zone
 }

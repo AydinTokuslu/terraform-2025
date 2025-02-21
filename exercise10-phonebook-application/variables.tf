@@ -36,3 +36,6 @@ variable "db_subnet_b_us_east_1b_id" {
 variable "hosted-zone" {
   default = "devopsaydintokuslu.de."
 }
+variable "git-name" {
+  default = "AydinTokuslu"
+}

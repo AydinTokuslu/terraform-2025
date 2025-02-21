@@ -109,3 +109,14 @@
 # cd ..
 # echo "$(cat ${var.rds_endpoint} )" > /home/ec2-user/dbserver.endpoint
 # python3 contact-list-app.py
+
+# #! /bin/bash
+# yum update -y
+# yum install python3 -y
+# pip3 install flask
+# pip3 install flask_mysql
+# yum install git -y
+# TOKEN=${user-data-git-token}
+# USER=${user-data-git-name}
+# cd /home/ec2-user && git clone https://$TOKEN@github.com/$USER/phonebook.git
+# python3 /home/ec2-user/phonebook/phonebook-app.py

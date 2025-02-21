@@ -1,6 +1,7 @@
 resource "aws_lb" "phonebook-lb" {
   name               = "phonebook-lb"
   internal           = false
+  ip_address_type = "ipv4"
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb-secgrp.id]
   subnets            = data.aws_subnets.default.ids

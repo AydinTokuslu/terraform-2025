@@ -13,9 +13,12 @@ resource "aws_db_instance" "my-database-server" {
 
   skip_final_snapshot = true
   publicly_accessible = true
-
+  monitoring_interval = 0
+  multi_az = false
   vpc_security_group_ids  = [aws_security_group.db-secgrp.id]
   backup_retention_period = 0
+  allow_major_version_upgrade = false
+  auto_minor_version_upgrade = true
   db_subnet_group_name    = aws_db_subnet_group.default.name
 
 }

@@ -21,22 +21,7 @@ resource "aws_launch_template" "my_launch_template" {
   }
 }
 
-# resource "aws_instance" "phonebook_app" {
-#   #ami             = "ami-xyz"
-#   ami             = data.aws_ami.linux2.id
-#   instance_type   = "t2.micro"
 
-#   depends_on = [aws_db_instance.my-database-server] # Önce DB oluşsun
-
-#   user_data = base64encode(templatefile("${path.module}/userdata.sh", {
-#     MyDBURI = aws_db_instance.my-database-server.endpoint,
-#     FOLDER  = "https://raw.githubusercontent.com/AydinTokuslu/my-projects/refs/heads/main/aws/Project-004-Phonebook-Application/phonebook-app.py"
-#   }))
-
-#   tags = {
-#     Name = "PhonebookApp"
-#   }
-# }
 
 
 
