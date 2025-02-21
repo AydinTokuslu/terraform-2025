@@ -40,5 +40,5 @@ variable "git-name" {
   default = "AydinTokuslu"
 }
 variable "git-token" {
-  default = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  #default = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 }
