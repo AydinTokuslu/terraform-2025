@@ -4,7 +4,7 @@
 output "s3_bucket_id" {
 
   #value = "http://${aws_s3_bucket_website_configuration.blog.website_endpoint}"
-  value = "http://${aws_s3_bucket.bucket.id}.s3-website-us-east-1.amazonaws.com "
+  value = "http://${aws_s3_bucket.static_website.id}.s3-website-us-east-1.amazonaws.com "
 
 }
 
