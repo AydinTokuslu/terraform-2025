@@ -44,6 +44,7 @@ resource "aws_s3_bucket_policy" "public_read" {
 }
 
 
+
 resource "aws_s3_object" "website_files" {
   for_each = fileset("./website", "*")
 
